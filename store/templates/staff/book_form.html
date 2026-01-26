@@ -1,0 +1,98 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}{% if editing %}Sửa sách{% else %}Thêm sách{% endif %} - Quản trị{% endblock %}
+
+{% block staff_content %}
+<div class="mb-4">
+    <a href="{% url 'staff_book_list' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Quay lại
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">
+            <i class="bi bi-{% if editing %}pencil{% else %}plus-lg{% endif %}"></i>
+            {% if editing %}Sửa sách{% else %}Thêm sách mới{% endif %}
+        </h5>
+    </div>
+    <div class="card-body">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <label class="form-label">Tên sách <span class="text-danger">*</span></label>
+                        <input type="text" name="title" class="form-control" value="{% if editing %}{{ book.title }}{% else %}{{ title }}{% endif %}" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Tác giả <span class="text-danger">*</span></label>
+                            <input type="text" name="author" class="form-control" value="{% if editing %}{{ book.author }}{% else %}{{ author }}{% endif %}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Danh mục</label>
+                            <input type="text" name="category" class="form-control" value="{% if editing %}{{ book.category }}{% else %}{{ category }}{% endif %}" placeholder="VD: Văn học, Kinh tế, ...">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <textarea name="description" class="form-control" rows="4">{% if editing %}{{ book.description }}{% else %}{{ description }}{% endif %}</textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Giá (VNĐ) <span class="text-danger">*</span></label>
+                            <input type="number" name="price" class="form-control" value="{% if editing %}{{ book.price }}{% else %}{{ price }}{% endif %}" min="0" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Số lượng tồn kho</label>
+                            <input type="number" name="stock_quantity" class="form-control" value="{% if editing %}{{ book.stock_quantity }}{% else %}{{ stock_quantity|default:0 }}{% endif %}" min="0">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Năm xuất bản</label>
+                            <input type="number" name="publication_year" class="form-control" value="{% if editing %}{{ book.publication_year }}{% else %}{{ publication_year }}{% endif %}" min="1900" max="2100">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">ISBN</label>
+                            <input type="text" name="isbn" class="form-control" value="{% if editing %}{{ book.isbn }}{% else %}{{ isbn }}{% endif %}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nhà xuất bản</label>
+                            <input type="text" name="publisher" class="form-control" value="{% if editing %}{{ book.publisher }}{% else %}{{ publisher }}{% endif %}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Ảnh bìa</label>
+                        {% if editing and book.image %}
+                        <div class="mb-2">
+                            <img src="{{ book.image.url }}" alt="{{ book.title }}" class="img-fluid rounded" style="max-height: 200px;">
+                        </div>
+                        {% endif %}
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                        <small class="text-muted">Định dạng: JPG, PNG. Tối đa 2MB</small>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg"></i> {% if editing %}Cập nhật{% else %}Thêm sách{% endif %}
+                </button>
+                <a href="{% url 'staff_book_list' %}" class="btn btn-outline-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

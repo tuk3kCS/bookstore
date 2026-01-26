@@ -1,0 +1,118 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}Quản lý sách - Quản trị{% endblock %}
+
+{% block staff_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-book"></i> Quản lý sách</h2>
+    <a href="{% url 'staff_book_add' %}" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Thêm sách mới
+    </a>
+</div>
+
+<!-- Search -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" action="" class="row g-3">
+            <div class="col-md-10">
+                <input type="text" name="q" class="form-control" placeholder="Tìm kiếm theo tên sách..." value="{{ query }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-search"></i> Tìm kiếm
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Book Table -->
+<div class="card">
+    <div class="card-body">
+        {% if books %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ảnh</th>
+                        <th>Tên sách</th>
+                        <th>Tác giả</th>
+                        <th>Giá</th>
+                        <th>Tồn kho</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>
+                            {% if book.image %}
+                            <img src="{{ book.image.url }}" alt="{{ book.title }}" style="width: 50px; height: 50px; object-fit: cover;" class="rounded">
+                            {% else %}
+                            <div class="bg-light rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="bi bi-book text-muted"></i>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>{{ book.title|truncatechars:40 }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.price|floatformat:0 }}đ</td>
+                        <td>
+                            {% if book.stock_quantity < 10 %}
+                            <span class="badge bg-danger">{{ book.stock_quantity }}</span>
+                            {% else %}
+                            <span class="badge bg-success">{{ book.stock_quantity }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'staff_book_edit' book.id %}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="{% url 'staff_book_delete' book.id %}" method="post" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa sách này?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        {% if books.has_other_pages %}
+        <nav>
+            <ul class="pagination justify-content-center mb-0">
+                {% if books.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ books.previous_page_number }}&q={{ query }}">&laquo;</a>
+                </li>
+                {% endif %}
+                
+                {% for num in books.paginator.page_range %}
+                {% if books.number == num %}
+                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% elif num > books.number|add:'-3' and num < books.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}&q={{ query }}">{{ num }}</a></li>
+                {% endif %}
+                {% endfor %}
+                
+                {% if books.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ books.next_page_number }}&q={{ query }}">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+        
+        {% else %}
+        <p class="text-muted text-center mb-0">Không tìm thấy sách nào.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

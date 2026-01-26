@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Thanh toán - Bookstore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4"><i class="bi bi-credit-card"></i> Thanh toán</h2>
+    
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Shipping Information -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="bi bi-truck"></i> Thông tin giao hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Họ tên</label>
+                                <input type="text" class="form-control" value="{{ customer.name }}" disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" name="shipping_phone" class="form-control" value="{% if shipping_phone %}{{ shipping_phone }}{% else %}{{ customer.phone }}{% endif %}" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ giao hàng <span class="text-danger">*</span></label>
+                            <textarea name="shipping_address" class="form-control" rows="2" required>{% if shipping_address %}{{ shipping_address }}{% else %}{{ customer.address }}{% endif %}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ghi chú</label>
+                            <textarea name="note" class="form-control" rows="2" placeholder="Ghi chú cho đơn hàng (tùy chọn)">{{ note }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping Method -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="bi bi-box-seam"></i> Phương thức giao hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for shipping in shipping_methods %}
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="shipping_method" value="{{ shipping.id }}" id="shipping{{ shipping.id }}" {% if forloop.first %}checked{% endif %} data-fee="{{ shipping.fee }}">
+                            <label class="form-check-label d-flex justify-content-between w-100" for="shipping{{ shipping.id }}">
+                                <span>
+                                    <strong>{{ shipping.method_name }}</strong>
+                                    {% if shipping.description %}
+                                    <br><small class="text-muted">{{ shipping.description }}</small>
+                                    {% endif %}
+                                    <br><small class="text-muted">Dự kiến {{ shipping.estimated_days }} ngày</small>
+                                </span>
+                                <span class="text-primary fw-bold">{{ shipping.fee|floatformat:0 }}đ</span>
+                            </label>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted">Không có phương thức giao hàng nào.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- Payment Method -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="bi bi-wallet2"></i> Phương thức thanh toán</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for payment in payment_methods %}
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="payment_method" value="{{ payment.id }}" id="payment{{ payment.id }}" {% if forloop.first %}checked{% endif %}>
+                            <label class="form-check-label" for="payment{{ payment.id }}">
+                                <strong>{{ payment.method_name }}</strong>
+                                {% if payment.description %}
+                                <br><small class="text-muted">{{ payment.description }}</small>
+                                {% endif %}
+                            </label>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted">Không có phương thức thanh toán nào.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <!-- Order Summary -->
+                <div class="card sticky-top" style="top: 80px;">
+                    <div class="card-header">
+                        <h5 class="mb-0">Đơn hàng của bạn</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for item in cart_items %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>
+                                {{ item.book.title|truncatechars:25 }}
+                                <small class="text-muted">x{{ item.quantity }}</small>
+                            </span>
+                            <span>{{ item.get_subtotal|floatformat:0 }}đ</span>
+                        </div>
+                        {% endfor %}
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tạm tính:</span>
+                            <span id="subtotal">{{ total|floatformat:0 }}đ</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Phí giao hàng:</span>
+                            <span id="shipping-fee">0đ</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-3">
+                            <strong>Tổng cộng:</strong>
+                            <strong class="text-primary fs-5" id="grand-total">{{ total|floatformat:0 }}đ</strong>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-check-circle"></i> Đặt hàng
+                        </button>
+                        
+                        <a href="{% url 'cart_view' %}" class="btn btn-outline-secondary w-100 mt-2">
+                            <i class="bi bi-arrow-left"></i> Quay lại giỏ hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Update total when shipping method changes
+    const subtotal = {{ total }};
+    
+    document.querySelectorAll('input[name="shipping_method"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const fee = parseFloat(this.dataset.fee);
+            document.getElementById('shipping-fee').textContent = fee.toLocaleString('vi-VN') + 'đ';
+            document.getElementById('grand-total').textContent = (subtotal + fee).toLocaleString('vi-VN') + 'đ';
+        });
+    });
+    
+    // Trigger change on first shipping method
+    const firstShipping = document.querySelector('input[name="shipping_method"]:checked');
+    if (firstShipping) {
+        firstShipping.dispatchEvent(new Event('change'));
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}Trang chủ - Bookstore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="bg-primary text-white rounded-3 p-5 mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-4 fw-bold">Chào mừng đến với Bookstore</h1>
+                <p class="lead">Khám phá thế giới sách phong phú với hàng ngàn đầu sách đa dạng.</p>
+                <a href="{% url 'book_list' %}" class="btn btn-light btn-lg">
+                    <i class="bi bi-search"></i> Khám phá ngay
+                </a>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="bi bi-book display-1"></i>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Featured Books -->
+    {% if featured_books %}
+    <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="bi bi-star"></i> Sách nổi bật</h2>
+            <a href="{% url 'book_list' %}" class="btn btn-outline-primary">Xem tất cả</a>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            {% for book in featured_books %}
+            <div class="col">
+                <div class="card h-100 book-card">
+                    {% if book.image %}
+                    <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="bi bi-book text-muted" style="font-size: 4rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title text-truncate">{{ book.title }}</h5>
+                        <p class="card-text text-muted small">{{ book.author }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-primary fw-bold">{{ book.price|floatformat:0 }}đ</span>
+                            <div class="text-warning">
+                                {% with avg_rating=book.get_average_rating %}
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= avg_rating %}
+                                    <i class="bi bi-star-fill"></i>
+                                    {% else %}
+                                    <i class="bi bi-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'book_detail' book.id %}" class="btn btn-primary btn-sm w-100">
+                            <i class="bi bi-eye"></i> Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- New Arrivals -->
+    {% if new_arrivals %}
+    <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="bi bi-clock-history"></i> Sách mới</h2>
+            <a href="{% url 'book_list' %}?sort=-created_at" class="btn btn-outline-primary">Xem tất cả</a>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            {% for book in new_arrivals %}
+            <div class="col">
+                <div class="card h-100 book-card">
+                    <span class="badge bg-success position-absolute top-0 end-0 m-2">Mới</span>
+                    {% if book.image %}
+                    <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="bi bi-book text-muted" style="font-size: 4rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title text-truncate">{{ book.title }}</h5>
+                        <p class="card-text text-muted small">{{ book.author }}</p>
+                        <span class="text-primary fw-bold">{{ book.price|floatformat:0 }}đ</span>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'book_detail' book.id %}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="bi bi-eye"></i> Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- Top Rated -->
+    {% if top_rated %}
+    <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="bi bi-trophy"></i> Đánh giá cao</h2>
+            <a href="{% url 'book_list' %}?sort=rating" class="btn btn-outline-primary">Xem tất cả</a>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            {% for book in top_rated %}
+            <div class="col">
+                <div class="card h-100 book-card">
+                    {% if book.image %}
+                    <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="bi bi-book text-muted" style="font-size: 4rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title text-truncate">{{ book.title }}</h5>
+                        <p class="card-text text-muted small">{{ book.author }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-primary fw-bold">{{ book.price|floatformat:0 }}đ</span>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <span>{{ book.avg_rating|floatformat:1 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'book_detail' book.id %}" class="btn btn-outline-primary btn-sm w-100">
+                            <i class="bi bi-eye"></i> Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- Features -->
+    <section class="py-5 bg-light rounded-3">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-md-3">
+                    <i class="bi bi-truck text-primary display-4"></i>
+                    <h5 class="mt-3">Giao hàng nhanh</h5>
+                    <p class="text-muted">Giao hàng toàn quốc</p>
+                </div>
+                <div class="col-md-3">
+                    <i class="bi bi-shield-check text-primary display-4"></i>
+                    <h5 class="mt-3">Bảo đảm chất lượng</h5>
+                    <p class="text-muted">Sách chính hãng 100%</p>
+                </div>
+                <div class="col-md-3">
+                    <i class="bi bi-credit-card text-primary display-4"></i>
+                    <h5 class="mt-3">Thanh toán an toàn</h5>
+                    <p class="text-muted">Nhiều phương thức</p>
+                </div>
+                <div class="col-md-3">
+                    <i class="bi bi-headset text-primary display-4"></i>
+                    <h5 class="mt-3">Hỗ trợ 24/7</h5>
+                    <p class="text-muted">Tư vấn tận tình</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

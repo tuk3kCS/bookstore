@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Đăng ký - Bookstore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0"><i class="bi bi-person-plus"></i> Đăng ký tài khoản</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Họ tên <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" name="name" class="form-control" placeholder="Nguyễn Văn A" value="{{ name }}" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" name="email" class="form-control" placeholder="your@email.com" value="{{ email }}" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    <input type="password" name="password" class="form-control" placeholder="Ít nhất 6 ký tự" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                                    <input type="password" name="confirm_password" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                <input type="tel" name="phone" class="form-control" placeholder="0912345678" value="{{ phone }}">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Địa chỉ</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                                <textarea name="address" class="form-control" rows="2" placeholder="Số nhà, đường, quận/huyện, thành phố">{{ address }}</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-person-plus"></i> Đăng ký
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr>
+                    
+                    <p class="text-center mb-0">
+                        Đã có tài khoản? <a href="{% url 'customer_login' %}">Đăng nhập</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

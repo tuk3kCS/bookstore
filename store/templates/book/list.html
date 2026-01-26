@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Danh sách sách - Bookstore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Sidebar Filter -->
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-funnel"></i> Bộ lọc</h5>
+                </div>
+                <div class="card-body">
+                    <form method="get" action="">
+                        <!-- Category Filter -->
+                        {% if categories %}
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Danh mục</label>
+                            <select name="category" class="form-select">
+                                <option value="">Tất cả</option>
+                                {% for cat in categories %}
+                                <option value="{{ cat }}" {% if cat == current_category %}selected{% endif %}>{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Price Filter -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Giá</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <input type="number" name="min_price" class="form-control" placeholder="Từ" value="{{ request.GET.min_price }}">
+                                </div>
+                                <div class="col-6">
+                                    <input type="number" name="max_price" class="form-control" placeholder="Đến" value="{{ request.GET.max_price }}">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sort -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Sắp xếp</label>
+                            <select name="sort" class="form-select">
+                                <option value="-created_at" {% if current_sort == '-created_at' %}selected{% endif %}>Mới nhất</option>
+                                <option value="price_asc" {% if current_sort == 'price_asc' %}selected{% endif %}>Giá tăng dần</option>
+                                <option value="price_desc" {% if current_sort == 'price_desc' %}selected{% endif %}>Giá giảm dần</option>
+                                <option value="name" {% if current_sort == 'name' %}selected{% endif %}>Tên A-Z</option>
+                                <option value="rating" {% if current_sort == 'rating' %}selected{% endif %}>Đánh giá cao</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-search"></i> Áp dụng
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Book List -->
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Danh sách sách</h2>
+                <span class="text-muted">{{ books.paginator.count }} sách</span>
+            </div>
+            
+            {% if books %}
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {% for book in books %}
+                <div class="col">
+                    <div class="card h-100 book-card">
+                        {% if book.image %}
+                        <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 180px; object-fit: cover;">
+                        {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <i class="bi bi-book text-muted" style="font-size: 3rem;"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h6 class="card-title text-truncate">{{ book.title }}</h6>
+                            <p class="card-text text-muted small mb-2">{{ book.author }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-primary fw-bold">{{ book.price|floatformat:0 }}đ</span>
+                                {% if book.stock_quantity > 0 %}
+                                <span class="badge bg-success">Còn hàng</span>
+                                {% else %}
+                                <span class="badge bg-danger">Hết hàng</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'book_detail' book.id %}" class="btn btn-outline-primary btn-sm flex-grow-1">
+                                    <i class="bi bi-eye"></i> Chi tiết
+                                </a>
+                                {% if book.stock_quantity > 0 %}
+                                <form action="{% url 'cart_add' book.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if books.has_other_pages %}
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if books.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ books.previous_page_number }}&{{ request.GET.urlencode }}">&laquo;</a>
+                    </li>
+                    {% endif %}
+                    
+                    {% for num in books.paginator.page_range %}
+                    {% if books.number == num %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                    {% elif num > books.number|add:'-3' and num < books.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}&{{ request.GET.urlencode }}">{{ num }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    {% if books.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ books.next_page_number }}&{{ request.GET.urlencode }}">&raquo;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+            
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-inbox text-muted display-1"></i>
+                <p class="text-muted mt-3">Không tìm thấy sách nào.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
