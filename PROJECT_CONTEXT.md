@@ -437,42 +437,103 @@ def recommend_books(book_id, limit=4):
 
 ## 10. Hướng dẫn cài đặt và chạy
 
-### 10.1. Yêu cầu
+### 10.1. Yêu cầu hệ thống
 - Python 3.8+
-- MySQL Server
+- MySQL Server 8.0+
 - pip (Python package manager)
 
-### 10.2. Cài đặt
+### 10.2. Tạo database MySQL
+
+Mở MySQL và chạy lệnh sau để tạo database:
+
+```sql
+CREATE DATABASE bookstore CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 10.3. Cấu hình database
+
+Mở file `bookstore/settings.py` và cập nhật thông tin kết nối MySQL:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'bookstore',
+        'USER': 'root',              # Tên user MySQL của bạn
+        'PASSWORD': 'your_password', # Mật khẩu MySQL của bạn
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_pure': True,
+        },
+    }
+}
+```
+
+### 10.4. Các lệnh cài đặt
 
 ```bash
-# Clone/setup project
+# Bước 1: Di chuyển vào thư mục project
 cd bookstore
 
-# Tạo virtual environment
+# Bước 2: Tạo virtual environment (khuyến nghị)
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
 
-# Cài đặt dependencies
+# Bước 3: Kích hoạt virtual environment
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
+
+# Bước 4: Cài đặt dependencies
 pip install -r requirements.txt
 
-# Cấu hình database MySQL trong settings.py
-# Tạo database 'bookstore' trong MySQL
-
-# Chạy migrations
+# Bước 5: Tạo migrations cho app store
 python manage.py makemigrations store
+
+# Bước 6: Chạy migrate để tạo các bảng trong database
 python manage.py migrate
 
-# Tạo superuser (optional)
-python manage.py createsuperuser
+# Bước 7: Tạo dữ liệu mẫu (shipping, payment methods, staff account, sample books)
+python manage.py seed_data
 
-# Chạy server
+# Bước 8: Chạy server
 python manage.py runserver
 ```
 
-### 10.3. Truy cập
-- Website: http://127.0.0.1:8000
-- Admin: http://127.0.0.1:8000/admin
+### 10.5. Tóm tắt lệnh (copy nhanh cho Windows)
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py makemigrations store
+python manage.py migrate
+python manage.py seed_data
+python manage.py runserver
+```
+
+### 10.6. Truy cập
+
+| URL | Mô tả |
+|-----|-------|
+| http://127.0.0.1:8000 | Website chính |
+| http://127.0.0.1:8000/staff/login/ | Đăng nhập nhân viên |
+| http://127.0.0.1:8000/admin/ | Django Admin |
+
+### 10.7. Tài khoản mặc định
+
+Sau khi chạy lệnh `python manage.py seed_data`, hệ thống sẽ tạo sẵn:
+
+**Tài khoản Staff:**
+- Email: `admin@bookstore.vn`
+- Password: `admin123`
+
+**Dữ liệu mẫu:**
+- 3 phương thức giao hàng (Tiêu chuẩn, Nhanh, Hỏa tốc)
+- 4 phương thức thanh toán (COD, Chuyển khoản, Ví điện tử, Thẻ tín dụng)
+- 6 sách mẫu
 
 ## 11. Requirements
 
