@@ -5,7 +5,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
 
-from store.models import Staff, Book, Order
+from store.models import (
+    Staff, Book, Order, Category, Author, Publisher, 
+    Supplier, Inventory, Coupon
+)
 
 
 def staff_required(view_func):
@@ -67,6 +70,11 @@ def staff_dashboard(request):
     total_orders = Order.objects.count()
     pending_orders = Order.objects.filter(status='pending').count()
     low_stock_books = Book.objects.filter(stock_quantity__lt=10).count()
+    total_categories = Category.objects.count()
+    total_authors = Author.objects.count()
+    total_publishers = Publisher.objects.count()
+    total_suppliers = Supplier.objects.count()
+    active_coupons = Coupon.objects.filter(is_active=True).count()
     
     # Recent orders
     recent_orders = Order.objects.order_by('-created_at')[:5]
@@ -74,13 +82,22 @@ def staff_dashboard(request):
     # Low stock books
     low_stock = Book.objects.filter(stock_quantity__lt=10).order_by('stock_quantity')[:5]
     
+    # Recent inventory transactions
+    recent_inventory = Inventory.objects.select_related('book', 'staff').order_by('-created_at')[:5]
+    
     context = {
         'total_books': total_books,
         'total_orders': total_orders,
         'pending_orders': pending_orders,
         'low_stock_books': low_stock_books,
+        'total_categories': total_categories,
+        'total_authors': total_authors,
+        'total_publishers': total_publishers,
+        'total_suppliers': total_suppliers,
+        'active_coupons': active_coupons,
         'recent_orders': recent_orders,
         'low_stock': low_stock,
+        'recent_inventory': recent_inventory,
     }
     return render(request, 'staff/dashboard.html', context)
 
@@ -110,15 +127,19 @@ def staff_book_list(request):
 @staff_required
 def staff_book_add(request):
     """Add a new book"""
+    categories = Category.objects.filter(is_active=True)
+    authors = Author.objects.all()
+    publishers = Publisher.objects.filter(is_active=True)
+    
     if request.method == 'POST':
         title = request.POST.get('title', '').strip()
-        author = request.POST.get('author', '').strip()
+        author_id = request.POST.get('author', '')
         description = request.POST.get('description', '').strip()
         price = request.POST.get('price', '')
         stock_quantity = request.POST.get('stock_quantity', '0')
-        category = request.POST.get('category', '').strip()
+        category_id = request.POST.get('category', '')
         isbn = request.POST.get('isbn', '').strip()
-        publisher = request.POST.get('publisher', '').strip()
+        publisher_id = request.POST.get('publisher', '')
         publication_year = request.POST.get('publication_year', '')
         image = request.FILES.get('image')
         
@@ -126,8 +147,6 @@ def staff_book_add(request):
         errors = []
         if not title:
             errors.append('Vui lòng nhập tên sách.')
-        if not author:
-            errors.append('Vui lòng nhập tên tác giả.')
         if not price:
             errors.append('Vui lòng nhập giá sách.')
         
@@ -136,26 +155,29 @@ def staff_book_add(request):
                 messages.error(request, error)
             return render(request, 'staff/book_form.html', {
                 'title': title,
-                'author': author,
+                'author_id': author_id,
                 'description': description,
                 'price': price,
                 'stock_quantity': stock_quantity,
-                'category': category,
+                'category_id': category_id,
                 'isbn': isbn,
-                'publisher': publisher,
+                'publisher_id': publisher_id,
                 'publication_year': publication_year,
+                'categories': categories,
+                'authors': authors,
+                'publishers': publishers,
             })
         
         # Create book
         book = Book(
             title=title,
-            author=author,
+            author_id=int(author_id) if author_id else None,
             description=description,
             price=price,
             stock_quantity=int(stock_quantity) if stock_quantity else 0,
-            category=category if category else None,
+            category_id=int(category_id) if category_id else None,
             isbn=isbn if isbn else None,
-            publisher=publisher if publisher else None,
+            publisher_id=int(publisher_id) if publisher_id else None,
             publication_year=int(publication_year) if publication_year else None,
         )
         
@@ -166,23 +188,34 @@ def staff_book_add(request):
         messages.success(request, 'Thêm sách thành công!')
         return redirect('staff_book_list')
     
-    return render(request, 'staff/book_form.html')
+    context = {
+        'categories': categories,
+        'authors': authors,
+        'publishers': publishers,
+    }
+    return render(request, 'staff/book_form.html', context)
 
 
 @staff_required
 def staff_book_edit(request, book_id):
     """Edit an existing book"""
     book = get_object_or_404(Book, id=book_id)
+    categories = Category.objects.filter(is_active=True)
+    authors = Author.objects.all()
+    publishers = Publisher.objects.filter(is_active=True)
     
     if request.method == 'POST':
         book.title = request.POST.get('title', '').strip()
-        book.author = request.POST.get('author', '').strip()
+        author_id = request.POST.get('author', '')
+        book.author_id = int(author_id) if author_id else None
         book.description = request.POST.get('description', '').strip()
         book.price = request.POST.get('price', book.price)
         book.stock_quantity = int(request.POST.get('stock_quantity', 0))
-        book.category = request.POST.get('category', '').strip() or None
+        category_id = request.POST.get('category', '')
+        book.category_id = int(category_id) if category_id else None
         book.isbn = request.POST.get('isbn', '').strip() or None
-        book.publisher = request.POST.get('publisher', '').strip() or None
+        publisher_id = request.POST.get('publisher', '')
+        book.publisher_id = int(publisher_id) if publisher_id else None
         publication_year = request.POST.get('publication_year', '')
         book.publication_year = int(publication_year) if publication_year else None
         
@@ -196,6 +229,9 @@ def staff_book_edit(request, book_id):
     context = {
         'book': book,
         'editing': True,
+        'categories': categories,
+        'authors': authors,
+        'publishers': publishers,
     }
     return render(request, 'staff/book_form.html', context)
 

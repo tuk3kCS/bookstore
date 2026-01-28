@@ -7,7 +7,7 @@ from django.db.models import Q, Avg
 from django.contrib import messages
 from django.core.paginator import Paginator
 
-from store.models import Book, Rating, Customer
+from store.models import Book, Rating, Customer, Category, Author, Publisher, Review
 from store.services.recommendation import recommend_books
 
 
@@ -34,12 +34,22 @@ def home(request):
 
 def book_list(request):
     """List all books with pagination and filtering"""
-    books = Book.objects.all()
+    books = Book.objects.select_related('author', 'category', 'publisher').all()
     
     # Category filter
-    category = request.GET.get('category')
-    if category:
-        books = books.filter(category=category)
+    category_id = request.GET.get('category')
+    if category_id:
+        books = books.filter(category_id=category_id)
+    
+    # Author filter
+    author_id = request.GET.get('author')
+    if author_id:
+        books = books.filter(author_id=author_id)
+    
+    # Publisher filter
+    publisher_id = request.GET.get('publisher')
+    if publisher_id:
+        books = books.filter(publisher_id=publisher_id)
     
     # Price filter
     min_price = request.GET.get('min_price')
@@ -67,14 +77,19 @@ def book_list(request):
     page = request.GET.get('page', 1)
     books = paginator.get_page(page)
     
-    # Get categories for filter
-    categories = Book.objects.values_list('category', flat=True).distinct()
-    categories = [c for c in categories if c]
+    # Get filter options from models
+    categories = Category.objects.filter(is_active=True)
+    authors = Author.objects.all()
+    publishers = Publisher.objects.filter(is_active=True)
     
     context = {
         'books': books,
         'categories': categories,
-        'current_category': category,
+        'authors': authors,
+        'publishers': publishers,
+        'current_category': category_id,
+        'current_author': author_id,
+        'current_publisher': publisher_id,
         'current_sort': sort,
     }
     return render(request, 'book/list.html', context)
@@ -82,19 +97,35 @@ def book_list(request):
 
 def book_detail(request, book_id):
     """Display book details"""
-    book = get_object_or_404(Book, id=book_id)
+    book = get_object_or_404(
+        Book.objects.select_related('author', 'category', 'publisher'),
+        id=book_id
+    )
     
     # Get ratings for this book
     ratings = Rating.objects.filter(book=book).select_related('customer')[:10]
     
+    # Get reviews for this book
+    reviews = Review.objects.filter(book=book, is_approved=True).select_related('customer')[:5]
+    
     # Get recommended books
     recommendations = recommend_books(book_id)
     
+    # Get books from same author
+    same_author_books = []
+    if book.author:
+        same_author_books = Book.objects.filter(author=book.author).exclude(id=book_id)[:4]
+    
     # Check if current customer has rated this book
     customer_rating = None
+    customer_review = None
     customer_id = request.session.get('customer_id')
     if customer_id:
         customer_rating = Rating.objects.filter(
+            customer_id=customer_id,
+            book=book
+        ).first()
+        customer_review = Review.objects.filter(
             customer_id=customer_id,
             book=book
         ).first()
@@ -102,8 +133,11 @@ def book_detail(request, book_id):
     context = {
         'book': book,
         'ratings': ratings,
+        'reviews': reviews,
         'recommendations': recommendations,
+        'same_author_books': same_author_books,
         'customer_rating': customer_rating,
+        'customer_review': customer_review,
         'average_rating': book.get_average_rating(),
         'rating_count': book.get_rating_count(),
     }
@@ -116,12 +150,14 @@ def book_search(request):
     books = []
     
     if query:
-        books = Book.objects.filter(
+        books = Book.objects.select_related('author', 'category', 'publisher').filter(
             Q(title__icontains=query) |
-            Q(author__icontains=query) |
+            Q(author__name__icontains=query) |
             Q(description__icontains=query) |
-            Q(isbn__icontains=query)
-        )
+            Q(isbn__icontains=query) |
+            Q(category__name__icontains=query) |
+            Q(publisher__name__icontains=query)
+        ).distinct()
     
     # Pagination
     paginator = Paginator(books, 12)

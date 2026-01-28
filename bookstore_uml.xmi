@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.0" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="Visual Paradigm" exporterVersion="7.0.2">
+		<xmi:Extension extender="Visual Paradigm">
+			<nickname exportedFromDifferentName="false"/>
+		</xmi:Extension>
+	</xmi:Documentation>
+	<uml:Model name="Bookstore Management System" xmi:id="MODEL_Bookstore">
+		
+		<!-- ==================== CLASSES ==================== -->
+		
+		<!-- 1. Book -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Book" visibility="public" xmi:id="CLS_Book" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Book_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="title" type="String_id" visibility="private" xmi:id="ATTR_Book_title" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="price" type="float_id" visibility="private" xmi:id="ATTR_Book_price" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="stock" type="int_id" visibility="private" xmi:id="ATTR_Book_stock" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 2. Category -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Category" visibility="public" xmi:id="CLS_Category" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Category_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Category_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="description" type="String_id" visibility="private" xmi:id="ATTR_Category_desc" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 3. Author -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Author" visibility="public" xmi:id="CLS_Author" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Author_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Author_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="biography" type="String_id" visibility="private" xmi:id="ATTR_Author_bio" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 4. Publisher -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Publisher" visibility="public" xmi:id="CLS_Publisher" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Publisher_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Publisher_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="address" type="String_id" visibility="private" xmi:id="ATTR_Publisher_addr" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 5. Rating -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Rating" visibility="public" xmi:id="CLS_Rating" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Rating_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="score" type="int_id" visibility="private" xmi:id="ATTR_Rating_score" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="comment" type="String_id" visibility="private" xmi:id="ATTR_Rating_comment" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 6. Review -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Review" visibility="public" xmi:id="CLS_Review" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Review_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="title" type="String_id" visibility="private" xmi:id="ATTR_Review_title" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="content" type="String_id" visibility="private" xmi:id="ATTR_Review_content" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 7. Customer -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Customer" visibility="public" xmi:id="CLS_Customer" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Customer_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Customer_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="email" type="String_id" visibility="private" xmi:id="ATTR_Customer_email" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="password" type="String_id" visibility="private" xmi:id="ATTR_Customer_pass" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 8. Address -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Address" visibility="public" xmi:id="CLS_Address" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Address_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="street" type="String_id" visibility="private" xmi:id="ATTR_Address_street" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="city" type="String_id" visibility="private" xmi:id="ATTR_Address_city" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 9. Wishlist -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Wishlist" visibility="public" xmi:id="CLS_Wishlist" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Wishlist_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Wishlist_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 10. WishlistItem -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="WishlistItem" visibility="public" xmi:id="CLS_WishlistItem" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_WishlistItem_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="priority" type="int_id" visibility="private" xmi:id="ATTR_WishlistItem_priority" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 11. Staff -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Staff" visibility="public" xmi:id="CLS_Staff" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Staff_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Staff_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="email" type="String_id" visibility="private" xmi:id="ATTR_Staff_email" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="role" type="String_id" visibility="private" xmi:id="ATTR_Staff_role" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 12. Cart -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Cart" visibility="public" xmi:id="CLS_Cart" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Cart_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="customer_id" type="int_id" visibility="private" xmi:id="ATTR_Cart_custid" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="created_at" type="TimeStamp_id" visibility="private" xmi:id="ATTR_Cart_created" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 13. CartItem -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="CartItem" visibility="public" xmi:id="CLS_CartItem" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_CartItem_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="cart_id" type="int_id" visibility="private" xmi:id="ATTR_CartItem_cartid" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="book_id" type="int_id" visibility="private" xmi:id="ATTR_CartItem_bookid" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="quantity" type="int_id" visibility="private" xmi:id="ATTR_CartItem_qty" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 14. Order -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Order" visibility="public" xmi:id="CLS_Order" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Order_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="total_price" type="float_id" visibility="private" xmi:id="ATTR_Order_total" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="status" type="String_id" visibility="private" xmi:id="ATTR_Order_status" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 15. OrderItem -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="OrderItem" visibility="public" xmi:id="CLS_OrderItem" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_OrderItem_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="quantity" type="int_id" visibility="private" xmi:id="ATTR_OrderItem_qty" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="price" type="float_id" visibility="private" xmi:id="ATTR_OrderItem_price" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 16. Payment -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Payment" visibility="public" xmi:id="CLS_Payment" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Payment_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="method_name" type="String_id" visibility="private" xmi:id="ATTR_Payment_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="is_active" type="boolean_id" visibility="private" xmi:id="ATTR_Payment_active" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 17. Shipping -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Shipping" visibility="public" xmi:id="CLS_Shipping" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Shipping_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="method_name" type="String_id" visibility="private" xmi:id="ATTR_Shipping_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="fee" type="float_id" visibility="private" xmi:id="ATTR_Shipping_fee" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 18. Coupon -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Coupon" visibility="public" xmi:id="CLS_Coupon" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Coupon_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="code" type="String_id" visibility="private" xmi:id="ATTR_Coupon_code" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="discount_value" type="float_id" visibility="private" xmi:id="ATTR_Coupon_value" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 19. Supplier -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Supplier" visibility="public" xmi:id="CLS_Supplier" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Supplier_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="name" type="String_id" visibility="private" xmi:id="ATTR_Supplier_name" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="contact_person" type="String_id" visibility="private" xmi:id="ATTR_Supplier_contact" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- 20. Inventory -->
+		<ownedMember isAbstract="false" isActive="false" isLeaf="false" name="Inventory" visibility="public" xmi:id="CLS_Inventory" xmi:type="uml:Class">
+			<xmi:Extension extender="Visual Paradigm"><isRoot xmi:value="false"/><modelType value="Class"/><businessModel xmi:value="false"/><qualityScore value="-1"/></xmi:Extension>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="id" type="int_id" visibility="private" xmi:id="ATTR_Inventory_id" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="transaction_type" type="String_id" visibility="private" xmi:id="ATTR_Inventory_type" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+			<ownedAttribute aggregation="none" isDerived="false" isDerivedUnion="false" isID="false" isLeaf="false" isReadOnly="false" isStatic="false" name="quantity" type="int_id" visibility="private" xmi:id="ATTR_Inventory_qty" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><attribute/><isAbstract xmi:value="false"/><isVisble xmi:value="true"/><qualityScore value="-1"/></xmi:Extension>
+			</ownedAttribute>
+		</ownedMember>
+
+		<!-- ==================== ASSOCIATIONS ==================== -->
+
+		<!-- Book -> Author (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Book_Author" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Book_Author_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Book_Author" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="books" type="CLS_Book" xmi:id="AE_Book_Author_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Book_Author_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Book_Author_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Book_Author" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="author" type="CLS_Author" xmi:id="AE_Book_Author_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Book_Author_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Book -> Category (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Book_Category" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Book_Cat_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Book_Category" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="books" type="CLS_Book" xmi:id="AE_Book_Cat_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Book_Cat_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Book_Cat_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Book_Category" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="category" type="CLS_Category" xmi:id="AE_Book_Cat_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Book_Cat_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Book -> Publisher (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Book_Publisher" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Book_Pub_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Book_Publisher" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="books" type="CLS_Book" xmi:id="AE_Book_Pub_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Book_Pub_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Book_Pub_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Book_Publisher" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="publisher" type="CLS_Publisher" xmi:id="AE_Book_Pub_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Book_Pub_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Customer -> Cart (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" name="" xmi:id="ASSOC_Customer_Cart" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cust_Cart_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Customer_Cart" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="customer" type="CLS_Customer" xmi:id="AE_Cust_Cart_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Cart_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cust_Cart_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Customer_Cart" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="cart" type="CLS_Cart" xmi:id="AE_Cust_Cart_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Cart_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Cart -> CartItem (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Cart_CartItem" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cart_CI_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Cart_CartItem" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="cart" type="CLS_Cart" xmi:id="AE_Cart_CI_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cart_CI_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cart_CI_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Cart_CartItem" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="cartItems" type="CLS_CartItem" xmi:id="AE_Cart_CI_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Cart_CI_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- CartItem -> Book (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_CartItem_Book" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_CI_Book_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_CartItem_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="cartItems" type="CLS_CartItem" xmi:id="AE_CI_Book_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_CI_Book_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_CI_Book_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_CartItem_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="book" type="CLS_Book" xmi:id="AE_CI_Book_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_CI_Book_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Book -> Rating (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Book_Rating" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Book_Rating_1"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Book_Rating" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="book" type="CLS_Book" xmi:id="AE_Book_Rating_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Book_Rating_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Book_Rating_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Book_Rating" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="ratings" type="CLS_Rating" xmi:id="AE_Book_Rating_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Book_Rating_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Book -> Review (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Book_Review" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Book_Review_1"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Book_Review" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="book" type="CLS_Book" xmi:id="AE_Book_Review_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Book_Review_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Book_Review_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Book_Review" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="reviews" type="CLS_Review" xmi:id="AE_Book_Review_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Book_Review_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Customer -> Address (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Customer_Address" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cust_Addr_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Customer_Address" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="customer" type="CLS_Customer" xmi:id="AE_Cust_Addr_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Addr_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cust_Addr_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Customer_Address" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="addresses" type="CLS_Address" xmi:id="AE_Cust_Addr_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Cust_Addr_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Customer -> Wishlist (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Customer_Wishlist" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cust_Wish_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Customer_Wishlist" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="customer" type="CLS_Customer" xmi:id="AE_Cust_Wish_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Wish_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cust_Wish_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Customer_Wishlist" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="wishlists" type="CLS_Wishlist" xmi:id="AE_Cust_Wish_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Cust_Wish_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Customer -> Rating (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Customer_Rating" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cust_Rating_1"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Customer_Rating" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="customer" type="CLS_Customer" xmi:id="AE_Cust_Rating_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Rating_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cust_Rating_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Customer_Rating" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="ratings" type="CLS_Rating" xmi:id="AE_Cust_Rating_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Cust_Rating_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Customer -> Review (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Customer_Review" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cust_Review_1"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Customer_Review" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="customer" type="CLS_Customer" xmi:id="AE_Cust_Review_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Review_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cust_Review_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Customer_Review" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="reviews" type="CLS_Review" xmi:id="AE_Cust_Review_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Cust_Review_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Customer -> Order (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Customer_Order" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Cust_Order_1"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Customer_Order" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="customer" type="CLS_Customer" xmi:id="AE_Cust_Order_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Cust_Order_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Cust_Order_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Customer_Order" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="orders" type="CLS_Order" xmi:id="AE_Cust_Order_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Cust_Order_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Wishlist -> WishlistItem (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Wishlist_WishlistItem" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Wish_WI_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Wishlist_WishlistItem" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="wishlist" type="CLS_Wishlist" xmi:id="AE_Wish_WI_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Wish_WI_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Wish_WI_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Wishlist_WishlistItem" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="wishlistItems" type="CLS_WishlistItem" xmi:id="AE_Wish_WI_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Wish_WI_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- WishlistItem -> Book (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_WishlistItem_Book" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_WI_Book_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_WishlistItem_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="wishlistItems" type="CLS_WishlistItem" xmi:id="AE_WI_Book_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_WI_Book_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_WI_Book_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_WishlistItem_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="book" type="CLS_Book" xmi:id="AE_WI_Book_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_WI_Book_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Order -> OrderItem (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Order_OrderItem" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Order_OI_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Order_OrderItem" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="order" type="CLS_Order" xmi:id="AE_Order_OI_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Order_OI_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Order_OI_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Order_OrderItem" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="orderItems" type="CLS_OrderItem" xmi:id="AE_Order_OI_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Order_OI_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Order -> Payment (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Order_Payment" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Order_Pay_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Order_Payment" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="order" type="CLS_Order" xmi:id="AE_Order_Pay_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Order_Pay_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Order_Pay_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Order_Payment" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="payment" type="CLS_Payment" xmi:id="AE_Order_Pay_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Order_Pay_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Order -> Shipping (Composition) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Order_Shipping" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Order_Ship_1"/>
+			<ownedEnd aggregation="composite" association="ASSOC_Order_Shipping" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="order" type="CLS_Order" xmi:id="AE_Order_Ship_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Order_Ship_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Order_Ship_2"/>
+			<ownedEnd aggregation="none" association="ASSOC_Order_Shipping" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="shipping" type="CLS_Shipping" xmi:id="AE_Order_Ship_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Order_Ship_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Order -> Coupon (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Order_Coupon" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Order_Coupon_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Order_Coupon" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="orders" type="CLS_Order" xmi:id="AE_Order_Coupon_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Order_Coupon_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Order_Coupon_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Order_Coupon" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="coupon" type="CLS_Coupon" xmi:id="AE_Order_Coupon_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="0..1" xmi:id="AE_Order_Coupon_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- OrderItem -> Book (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_OrderItem_Book" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_OI_Book_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_OrderItem_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="orderItems" type="CLS_OrderItem" xmi:id="AE_OI_Book_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_OI_Book_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_OI_Book_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_OrderItem_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="book" type="CLS_Book" xmi:id="AE_OI_Book_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_OI_Book_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Inventory -> Book (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Inventory_Book" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Inv_Book_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Inventory_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="inventories" type="CLS_Inventory" xmi:id="AE_Inv_Book_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Inv_Book_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Inv_Book_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Inventory_Book" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="book" type="CLS_Book" xmi:id="AE_Inv_Book_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Inv_Book_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Inventory -> Supplier (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Inventory_Supplier" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Inv_Sup_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Inventory_Supplier" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="inventories" type="CLS_Inventory" xmi:id="AE_Inv_Sup_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Inv_Sup_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Inv_Sup_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Inventory_Supplier" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="supplier" type="CLS_Supplier" xmi:id="AE_Inv_Sup_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="0..1" xmi:id="AE_Inv_Sup_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- Inventory -> Staff (Aggregation) -->
+		<ownedMember isAbstract="false" isDerived="false" isLeaf="false" xmi:id="ASSOC_Inventory_Staff" xmi:type="uml:Association">
+			<memberEnd xmi:idref="AE_Inv_Staff_1"/>
+			<ownedEnd aggregation="none" association="ASSOC_Inventory_Staff" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="inventories" type="CLS_Inventory" xmi:id="AE_Inv_Staff_1" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="*" xmi:id="AE_Inv_Staff_1_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+			<memberEnd xmi:idref="AE_Inv_Staff_2"/>
+			<ownedEnd aggregation="shared" association="ASSOC_Inventory_Staff" isDerived="false" isDerivedUnion="false" isLeaf="false" isNavigable="true" isReadOnly="false" isStatic="false" name="staff" type="CLS_Staff" xmi:id="AE_Inv_Staff_2" xmi:type="uml:Property">
+				<xmi:Extension extender="Visual Paradigm"><associationEnd/><qualityScore value="-1"/></xmi:Extension>
+				<lowerValue value="1" xmi:id="AE_Inv_Staff_2_lv" xmi:type="uml:LiteralString"/>
+			</ownedEnd>
+		</ownedMember>
+
+		<!-- ==================== DATA TYPES ==================== -->
+		<ownedMember name="String" visibility="public" xmi:id="String_id" xmi:type="uml:DataType"/>
+		<ownedMember name="int" visibility="public" xmi:id="int_id" xmi:type="uml:DataType"/>
+		<ownedMember name="float" visibility="public" xmi:id="float_id" xmi:type="uml:DataType"/>
+		<ownedMember name="boolean" visibility="public" xmi:id="boolean_id" xmi:type="uml:DataType"/>
+		<ownedMember name="TimeStamp" visibility="public" xmi:id="TimeStamp_id" xmi:type="uml:DataType"/>
+
+	</uml:Model>
+
+	<!-- ==================== CLASS DIAGRAM ==================== -->
+	<uml:Diagram diagramType="ClassDiagram" documentation="" name="Bookstore Class Diagram" toolName="Visual Paradigm" xmi:id="DIA_Main">
+		<xmi:Extension extender="Visual Paradigm">
+			<properties>
+				<apmAuthor value="Admin"/>
+				<azoomRatio value="1.0"/>
+				<amaximized value="true"/>
+				<ax value="0"/>
+				<ay value="0"/>
+				<awidth value="1920"/>
+				<aheight value="1080"/>
+				<aqualityScore value="-1"/>
+				<ainitializeDiagramForCreate value="true"/>
+			</properties>
+		</xmi:Extension>
+		<uml:Diagram.element>
+			<!-- Row 1: Book Domain -->
+			<uml:DiagramElement geometry="50,50,120,80" preferredShapeType="Class" subject="CLS_Book" xmi:id="DE_Book">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="1"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="200,50,120,70" preferredShapeType="Class" subject="CLS_Category" xmi:id="DE_Category">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="2"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="350,50,120,70" preferredShapeType="Class" subject="CLS_Author" xmi:id="DE_Author">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="3"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="500,50,120,70" preferredShapeType="Class" subject="CLS_Publisher" xmi:id="DE_Publisher">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="4"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="650,50,120,70" preferredShapeType="Class" subject="CLS_Rating" xmi:id="DE_Rating">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="5"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="800,50,120,70" preferredShapeType="Class" subject="CLS_Review" xmi:id="DE_Review">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="6"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+
+			<!-- Row 2: Customer Domain -->
+			<uml:DiagramElement geometry="50,180,120,80" preferredShapeType="Class" subject="CLS_Customer" xmi:id="DE_Customer">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="7"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="200,180,120,70" preferredShapeType="Class" subject="CLS_Address" xmi:id="DE_Address">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="8"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="350,180,120,60" preferredShapeType="Class" subject="CLS_Wishlist" xmi:id="DE_Wishlist">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="9"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="500,180,120,60" preferredShapeType="Class" subject="CLS_WishlistItem" xmi:id="DE_WishlistItem">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="10"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="650,180,120,80" preferredShapeType="Class" subject="CLS_Staff" xmi:id="DE_Staff">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="11"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+
+			<!-- Row 3: Order Domain -->
+			<uml:DiagramElement geometry="50,310,120,70" preferredShapeType="Class" subject="CLS_Cart" xmi:id="DE_Cart">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="12"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="200,310,120,80" preferredShapeType="Class" subject="CLS_CartItem" xmi:id="DE_CartItem">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="13"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="350,310,120,70" preferredShapeType="Class" subject="CLS_Order" xmi:id="DE_Order">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="14"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="500,310,120,70" preferredShapeType="Class" subject="CLS_OrderItem" xmi:id="DE_OrderItem">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="15"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="650,310,120,70" preferredShapeType="Class" subject="CLS_Payment" xmi:id="DE_Payment">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="16"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="800,310,120,70" preferredShapeType="Class" subject="CLS_Shipping" xmi:id="DE_Shipping">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="17"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+
+			<!-- Row 4: Inventory Domain & Coupon -->
+			<uml:DiagramElement geometry="50,440,120,70" preferredShapeType="Class" subject="CLS_Coupon" xmi:id="DE_Coupon">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="18"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="200,440,120,70" preferredShapeType="Class" subject="CLS_Supplier" xmi:id="DE_Supplier">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="19"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+			<uml:DiagramElement geometry="350,440,120,70" preferredShapeType="Class" subject="CLS_Inventory" xmi:id="DE_Inventory">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="20"/><abackground value="Cr:122,207,245,255"/><aforeground value="Cr:0,0,0,255"/></properties></xmi:Extension>
+				<elementFill color1="Cr:122,207,245,255" style="1" transparency="0" type="1"/>
+			</uml:DiagramElement>
+
+			<!-- Association Connectors -->
+			<uml:DiagramElement fromDiagramElement="DE_Book" geometry="170,90;200,90;" preferredShapeType="Association" subject="ASSOC_Book_Category" toDiagramElement="DE_Category" xmi:id="DE_ASSOC_Book_Cat">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="21"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+			<uml:DiagramElement fromDiagramElement="DE_Book" geometry="170,85;350,85;" preferredShapeType="Association" subject="ASSOC_Book_Author" toDiagramElement="DE_Author" xmi:id="DE_ASSOC_Book_Author">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="22"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+			<uml:DiagramElement fromDiagramElement="DE_Book" geometry="170,80;500,80;" preferredShapeType="Association" subject="ASSOC_Book_Publisher" toDiagramElement="DE_Publisher" xmi:id="DE_ASSOC_Book_Pub">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="23"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+			<uml:DiagramElement fromDiagramElement="DE_Customer" geometry="110,260;110,310;" preferredShapeType="Association" subject="ASSOC_Customer_Cart" toDiagramElement="DE_Cart" xmi:id="DE_ASSOC_Cust_Cart">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="24"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+			<uml:DiagramElement fromDiagramElement="DE_Cart" geometry="170,350;200,350;" preferredShapeType="Association" subject="ASSOC_Cart_CartItem" toDiagramElement="DE_CartItem" xmi:id="DE_ASSOC_Cart_CI">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="25"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+			<uml:DiagramElement fromDiagramElement="DE_CartItem" geometry="260,310;110,130;" preferredShapeType="Association" subject="ASSOC_CartItem_Book" toDiagramElement="DE_Book" xmi:id="DE_ASSOC_CI_Book">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="26"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Book -> Rating -->
+			<uml:DiagramElement fromDiagramElement="DE_Book" geometry="170,75;650,75;" preferredShapeType="Association" subject="ASSOC_Book_Rating" toDiagramElement="DE_Rating" xmi:id="DE_ASSOC_Book_Rating">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="27"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Book -> Review -->
+			<uml:DiagramElement fromDiagramElement="DE_Book" geometry="170,70;800,70;" preferredShapeType="Association" subject="ASSOC_Book_Review" toDiagramElement="DE_Review" xmi:id="DE_ASSOC_Book_Review">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="28"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Customer -> Address -->
+			<uml:DiagramElement fromDiagramElement="DE_Customer" geometry="170,215;200,215;" preferredShapeType="Association" subject="ASSOC_Customer_Address" toDiagramElement="DE_Address" xmi:id="DE_ASSOC_Cust_Addr">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="29"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Customer -> Wishlist -->
+			<uml:DiagramElement fromDiagramElement="DE_Customer" geometry="170,210;350,210;" preferredShapeType="Association" subject="ASSOC_Customer_Wishlist" toDiagramElement="DE_Wishlist" xmi:id="DE_ASSOC_Cust_Wish">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="30"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Customer -> Rating -->
+			<uml:DiagramElement fromDiagramElement="DE_Customer" geometry="110,180;710,120;" preferredShapeType="Association" subject="ASSOC_Customer_Rating" toDiagramElement="DE_Rating" xmi:id="DE_ASSOC_Cust_Rating">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="31"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Customer -> Review -->
+			<uml:DiagramElement fromDiagramElement="DE_Customer" geometry="110,180;860,120;" preferredShapeType="Association" subject="ASSOC_Customer_Review" toDiagramElement="DE_Review" xmi:id="DE_ASSOC_Cust_Review">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="32"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Customer -> Order -->
+			<uml:DiagramElement fromDiagramElement="DE_Customer" geometry="110,260;410,310;" preferredShapeType="Association" subject="ASSOC_Customer_Order" toDiagramElement="DE_Order" xmi:id="DE_ASSOC_Cust_Order">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="33"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Wishlist -> WishlistItem -->
+			<uml:DiagramElement fromDiagramElement="DE_Wishlist" geometry="470,210;500,210;" preferredShapeType="Association" subject="ASSOC_Wishlist_WishlistItem" toDiagramElement="DE_WishlistItem" xmi:id="DE_ASSOC_Wish_WI">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="34"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- WishlistItem -> Book -->
+			<uml:DiagramElement fromDiagramElement="DE_WishlistItem" geometry="560,180;110,130;" preferredShapeType="Association" subject="ASSOC_WishlistItem_Book" toDiagramElement="DE_Book" xmi:id="DE_ASSOC_WI_Book">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="35"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Order -> OrderItem -->
+			<uml:DiagramElement fromDiagramElement="DE_Order" geometry="470,345;500,345;" preferredShapeType="Association" subject="ASSOC_Order_OrderItem" toDiagramElement="DE_OrderItem" xmi:id="DE_ASSOC_Order_OI">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="36"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Order -> Payment -->
+			<uml:DiagramElement fromDiagramElement="DE_Order" geometry="470,350;650,350;" preferredShapeType="Association" subject="ASSOC_Order_Payment" toDiagramElement="DE_Payment" xmi:id="DE_ASSOC_Order_Pay">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="37"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Order -> Shipping -->
+			<uml:DiagramElement fromDiagramElement="DE_Order" geometry="470,355;800,355;" preferredShapeType="Association" subject="ASSOC_Order_Shipping" toDiagramElement="DE_Shipping" xmi:id="DE_ASSOC_Order_Ship">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="38"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Order -> Coupon -->
+			<uml:DiagramElement fromDiagramElement="DE_Order" geometry="410,380;110,440;" preferredShapeType="Association" subject="ASSOC_Order_Coupon" toDiagramElement="DE_Coupon" xmi:id="DE_ASSOC_Order_Coupon">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="39"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- OrderItem -> Book -->
+			<uml:DiagramElement fromDiagramElement="DE_OrderItem" geometry="560,310;110,130;" preferredShapeType="Association" subject="ASSOC_OrderItem_Book" toDiagramElement="DE_Book" xmi:id="DE_ASSOC_OI_Book">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="40"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Inventory -> Book -->
+			<uml:DiagramElement fromDiagramElement="DE_Inventory" geometry="410,440;110,130;" preferredShapeType="Association" subject="ASSOC_Inventory_Book" toDiagramElement="DE_Book" xmi:id="DE_ASSOC_Inv_Book">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="41"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Inventory -> Supplier -->
+			<uml:DiagramElement fromDiagramElement="DE_Inventory" geometry="350,475;320,475;" preferredShapeType="Association" subject="ASSOC_Inventory_Supplier" toDiagramElement="DE_Supplier" xmi:id="DE_ASSOC_Inv_Sup">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="42"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+
+			<!-- Inventory -> Staff -->
+			<uml:DiagramElement fromDiagramElement="DE_Inventory" geometry="410,440;710,260;" preferredShapeType="Association" subject="ASSOC_Inventory_Staff" toDiagramElement="DE_Staff" xmi:id="DE_ASSOC_Inv_Staff">
+				<xmi:Extension extender="Visual Paradigm"><properties><azOrder value="43"/><aconnectorStyle value="3"/></properties></xmi:Extension>
+			</uml:DiagramElement>
+		</uml:Diagram.element>
+	</uml:Diagram>
+</xmi:XMI>
