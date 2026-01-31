@@ -7,7 +7,8 @@ from django.utils import timezone
 from datetime import timedelta
 from store.models import (
     Shipping, Payment, Staff, Book, 
-    Category, Author, Publisher, Supplier, Coupon
+    Category, Author, Publisher, Supplier, Coupon,
+    StaffRole
 )
 
 
@@ -213,6 +214,23 @@ class Command(BaseCommand):
             status = 'Created' if created else 'Exists'
             self.stdout.write(f'  {status} payment: {pm["method_name"]}')
 
+        # Create Staff Roles
+        self.stdout.write('\n--- Creating Staff Roles ---')
+        roles_data = [
+            {'name': 'Administrator', 'code': 'admin', 'description': 'Quản trị viên hệ thống'},
+            {'name': 'Manager', 'code': 'manager', 'description': 'Quản lý cửa hàng'},
+            {'name': 'Sales', 'code': 'sales', 'description': 'Nhân viên bán hàng'},
+        ]
+        roles = {}
+        for role_data in roles_data:
+            role, created = StaffRole.objects.get_or_create(
+                code=role_data['code'],
+                defaults=role_data
+            )
+            roles[role_data['code']] = role
+            status = 'Created' if created else 'Exists'
+            self.stdout.write(f'  {status} role: {role_data["name"]}')
+
         # Create sample staff account
         self.stdout.write('\n--- Creating Staff Account ---')
         staff_email = 'admin@bookstore.vn'
@@ -220,7 +238,7 @@ class Command(BaseCommand):
             staff = Staff(
                 name='Admin',
                 email=staff_email,
-                role='admin',
+                staff_role=roles.get('admin'),
                 phone='0123456789',
             )
             staff.set_password('admin123')

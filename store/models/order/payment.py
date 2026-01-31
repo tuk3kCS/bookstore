@@ -13,7 +13,7 @@ class Payment(models.Model):
     is_active = models.BooleanField(default=True, verbose_name='Đang hoạt động')
     
     class Meta:
-        db_table = 'payment_methods'
+        db_table = 'payments'
         ordering = ['method_name']
         verbose_name = 'Phương thức thanh toán'
         verbose_name_plural = 'Phương thức thanh toán'

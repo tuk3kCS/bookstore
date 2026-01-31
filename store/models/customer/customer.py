@@ -14,6 +14,17 @@ class Customer(models.Model):
     password = models.CharField(max_length=128, verbose_name='Mật khẩu')
     phone = models.CharField(max_length=20, blank=True, null=True, verbose_name='Số điện thoại')
     address = models.TextField(blank=True, null=True, verbose_name='Địa chỉ')
+    group = models.ForeignKey(
+        'store.CustomerGroup',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='customers',
+        verbose_name='Nhóm khách hàng'
+    )
+    date_of_birth = models.DateField(null=True, blank=True, verbose_name='Ngày sinh')
+    avatar = models.CharField(max_length=500, blank=True, verbose_name='Avatar URL')
+    is_verified = models.BooleanField(default=False, verbose_name='Đã xác thực')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Ngày đăng ký')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Ngày cập nhật')
     

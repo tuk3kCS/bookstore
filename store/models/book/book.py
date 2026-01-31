@@ -39,6 +39,26 @@ class Book(models.Model):
         verbose_name='Nhà xuất bản'
     )
     publication_year = models.PositiveIntegerField(blank=True, null=True, verbose_name='Năm xuất bản')
+    language = models.ForeignKey(
+        'store.BookLanguage',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='books',
+        verbose_name='Ngôn ngữ'
+    )
+    series = models.ForeignKey(
+        'store.BookSeries',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='books',
+        verbose_name='Bộ sách'
+    )
+    series_order = models.PositiveIntegerField(null=True, blank=True, verbose_name='Thứ tự trong bộ')
+    tags = models.ManyToManyField('store.BookTag', blank=True, related_name='books', verbose_name='Tags')
+    weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, verbose_name='Cân nặng (kg)')
+    page_count = models.PositiveIntegerField(null=True, blank=True, verbose_name='Số trang')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Ngày tạo')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Ngày cập nhật')
     

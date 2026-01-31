@@ -15,7 +15,7 @@ class Shipping(models.Model):
     is_active = models.BooleanField(default=True, verbose_name='Đang hoạt động')
     
     class Meta:
-        db_table = 'shipping_methods'
+        db_table = 'shippings'
         ordering = ['fee']
         verbose_name = 'Phương thức giao hàng'
         verbose_name_plural = 'Phương thức giao hàng'

@@ -4,7 +4,7 @@
 
 **Tên dự án:** Bookstore Management System  
 **Kiến trúc:** Monolithic MVC nâng cao - Domain Package MVC  
-**Mục tiêu:** Xây dựng hệ thống quản lý nhà sách trực tuyến với cấu trúc chia package theo miền nghiệp vụ (book, customer, staff, order, inventory) trong tầng Model và Controller.
+**Mục tiêu:** Xây dựng hệ thống quản lý nhà sách trực tuyến với cấu trúc chia package theo miền nghiệp vụ (book, customer, staff, order, inventory, marketing) trong tầng Model và Controller.
 
 ## 2. Công nghệ sử dụng
 
@@ -16,119 +16,204 @@
 | Database | MySQL |
 | ORM | Django ORM |
 
-## 3. Tổng quan Models (20 lớp)
+## 3. Tổng quan Models (50 lớp)
 
-| STT | Domain | Model | Mô tả |
-|-----|--------|-------|-------|
-| 1 | Book | Book | Thông tin sách |
-| 2 | Book | Rating | Đánh giá sách (điểm) |
-| 3 | Book | Category | Danh mục sách |
-| 4 | Book | Author | Tác giả |
-| 5 | Book | Publisher | Nhà xuất bản |
-| 6 | Book | Review | Bài đánh giá chi tiết |
-| 7 | Customer | Customer | Khách hàng |
-| 8 | Customer | Address | Địa chỉ giao hàng |
-| 9 | Customer | Wishlist | Danh sách yêu thích |
-| 10 | Customer | WishlistItem | Sách trong danh sách yêu thích |
-| 11 | Staff | Staff | Nhân viên |
-| 12 | Order | Cart | Giỏ hàng |
-| 13 | Order | CartItem | Sách trong giỏ hàng |
-| 14 | Order | Order | Đơn hàng |
-| 15 | Order | OrderItem | Sách trong đơn hàng |
-| 16 | Order | Payment | Phương thức thanh toán |
-| 17 | Order | Shipping | Phương thức giao hàng |
-| 18 | Order | Coupon | Mã giảm giá |
-| 19 | Inventory | Supplier | Nhà cung cấp |
-| 20 | Inventory | Inventory | Giao dịch nhập/xuất kho |
+### 3.1. Book Domain (12 lớp)
+| STT | Model | Mô tả |
+|-----|-------|-------|
+| 1 | Book | Thông tin sách |
+| 2 | Rating | Đánh giá sách (điểm) |
+| 3 | Category | Danh mục sách |
+| 4 | Author | Tác giả |
+| 5 | Publisher | Nhà xuất bản |
+| 6 | Review | Bài đánh giá chi tiết |
+| 7 | BookImage | Ảnh sách |
+| 8 | BookFormat | Định dạng sách (Hardcover, Paperback, Ebook) |
+| 9 | BookLanguage | Ngôn ngữ sách |
+| 10 | BookSeries | Bộ sách/Series |
+| 11 | BookTag | Tag phân loại sách |
+| 12 | BookDiscount | Giảm giá cho sách |
+
+### 3.2. Customer Domain (9 lớp)
+| STT | Model | Mô tả |
+|-----|-------|-------|
+| 13 | Customer | Khách hàng |
+| 14 | Address | Địa chỉ giao hàng |
+| 15 | Wishlist | Danh sách yêu thích |
+| 16 | WishlistItem | Sách trong danh sách yêu thích |
+| 17 | CustomerGroup | Nhóm khách hàng (VIP, Regular) |
+| 18 | LoyaltyPoint | Điểm thưởng |
+| 19 | LoyaltyTransaction | Giao dịch điểm thưởng |
+| 20 | GiftCard | Thẻ quà tặng |
+| 21 | Notification | Thông báo cho khách hàng |
+
+### 3.3. Staff Domain (6 lớp)
+| STT | Model | Mô tả |
+|-----|-------|-------|
+| 22 | Staff | Nhân viên |
+| 23 | StaffRole | Vai trò nhân viên |
+| 24 | StaffPermission | Quyền hạn |
+| 25 | RolePermission | Quyền theo vai trò |
+| 26 | StaffSchedule | Lịch làm việc |
+| 27 | AuditLog | Nhật ký hệ thống |
+
+### 3.4. Order Domain (14 lớp)
+| STT | Model | Mô tả |
+|-----|-------|-------|
+| 28 | Cart | Giỏ hàng |
+| 29 | CartItem | Sách trong giỏ hàng |
+| 30 | Order | Đơn hàng |
+| 31 | OrderItem | Sách trong đơn hàng |
+| 32 | Payment | Thanh toán |
+| 33 | Shipping | Vận chuyển |
+| 34 | Coupon | Mã giảm giá |
+| 35 | ShippingMethod | Phương thức vận chuyển |
+| 36 | ShippingZone | Vùng vận chuyển |
+| 37 | ShippingZoneRate | Phí vận chuyển theo vùng |
+| 38 | PaymentMethod | Phương thức thanh toán |
+| 39 | Tax | Thuế |
+| 40 | TaxRate | Thuế suất |
+| 41 | ReturnOrder | Đơn trả hàng |
+| 42 | ReturnOrderItem | Chi tiết đơn trả hàng |
+
+### 3.5. Inventory Domain (7 lớp)
+| STT | Model | Mô tả |
+|-----|-------|-------|
+| 43 | Supplier | Nhà cung cấp |
+| 44 | Inventory | Tồn kho |
+| 45 | Warehouse | Kho hàng |
+| 46 | StockMovement | Chuyển động kho |
+| 47 | PurchaseOrder | Đơn nhập hàng |
+| 48 | PurchaseOrderItem | Chi tiết đơn nhập |
+| 49 | InventoryAlert | Cảnh báo tồn kho |
+
+### 3.6. Marketing Domain (5 lớp)
+| STT | Model | Mô tả |
+|-----|-------|-------|
+| 50 | Promotion | Chương trình khuyến mãi |
+| 51 | PromotionRule | Quy tắc khuyến mãi |
+| 52 | Banner | Banner quảng cáo |
+| 53 | Newsletter | Bản tin email |
+| 54 | NewsletterSubscriber | Người đăng ký bản tin |
 
 ## 4. Chức năng hệ thống
 
 ### 4.1. Quản lý sách (Book Domain)
-- Nhân viên nhập sách vào kho
-- Khách hàng tìm kiếm và xem sách
+- Nhân viên nhập sách vào kho với nhiều định dạng (Hardcover, Paperback, Ebook)
+- Quản lý ảnh sách (nhiều ảnh cho mỗi sách)
+- Khách hàng tìm kiếm và xem sách theo ngôn ngữ, series, tags
 - Hiển thị danh sách sách theo danh mục, tác giả, nhà xuất bản
-- Xem chi tiết sách
+- Xem chi tiết sách với các định dạng có sẵn
 - Đánh giá sách (Rating & Review)
+- Quản lý bộ sách (BookSeries)
+- Áp dụng giảm giá cho sách cụ thể (BookDiscount)
 
 ### 4.2. Quản lý khách hàng (Customer Domain)
-- Đăng ký tài khoản
+- Đăng ký tài khoản với xác thực email
 - Đăng nhập/Đăng xuất
-- Quản lý thông tin cá nhân
-- Quản lý địa chỉ giao hàng
+- Quản lý thông tin cá nhân và avatar
+- Quản lý nhiều địa chỉ giao hàng
 - Quản lý danh sách yêu thích (Wishlist)
+- Phân loại khách hàng theo nhóm (VIP, Regular, etc.)
+- Hệ thống điểm thưởng (Loyalty Points) với các tier
+- Sử dụng thẻ quà tặng (Gift Card)
+- Nhận thông báo về đơn hàng, khuyến mãi
 
 ### 4.3. Quản lý nhân viên (Staff Domain)
-- Đăng nhập nhân viên
+- Đăng nhập nhân viên với phân quyền
+- Quản lý vai trò và quyền hạn (Role-based Access Control)
 - Quản lý kho sách (thêm/sửa/xóa sách)
 - Quản lý danh mục, tác giả, nhà xuất bản
 - Quản lý nhà cung cấp
 - Quản lý nhập/xuất kho
-- Quản lý mã giảm giá
-- Xem danh sách đơn hàng
+- Quản lý mã giảm giá và khuyến mãi
+- Xem và xử lý đơn hàng
+- Quản lý lịch làm việc
+- Ghi nhật ký hoạt động (Audit Log)
 
 ### 4.4. Quản lý đơn hàng (Order Domain)
 - Tạo giỏ hàng và thêm sách
-- Áp dụng mã giảm giá
-- Đặt hàng
-- Chọn phương thức thanh toán (Payment)
-- Chọn phương thức giao hàng (Shipping)
-- Gợi ý sách dựa trên lịch sử mua và rating (Recommendation)
+- Áp dụng mã giảm giá và khuyến mãi
+- Đặt hàng với nhiều phương thức thanh toán
+- Chọn phương thức vận chuyển theo vùng
+- Tính thuế theo khu vực
+- Xử lý đơn trả hàng (Return Order)
+- Theo dõi trạng thái đơn hàng
+- Gợi ý sách dựa trên lịch sử mua và rating
 
 ### 4.5. Quản lý kho (Inventory Domain)
 - Quản lý nhà cung cấp
-- Nhập kho từ nhà cung cấp
-- Theo dõi lịch sử nhập/xuất kho
+- Quản lý nhiều kho hàng (Warehouse)
+- Tạo đơn nhập hàng (Purchase Order)
+- Theo dõi chuyển động kho (Stock Movement)
+- Cảnh báo tồn kho thấp (Inventory Alert)
+- Chuyển kho giữa các warehouse
 - Điều chỉnh tồn kho
+
+### 4.6. Marketing (Marketing Domain)
+- Tạo và quản lý chương trình khuyến mãi
+- Thiết lập quy tắc khuyến mãi theo danh mục, sản phẩm
+- Quản lý banner quảng cáo
+- Gửi bản tin email (Newsletter)
+- Quản lý người đăng ký nhận tin
 
 ## 5. Kiến trúc hệ thống
 
 ### 5.1. Mô hình MVC
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      View Layer                              │
-│                    HTML Templates                            │
-│    (book/, cart/, customer/, staff/, order/)                │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Controller Layer                           │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────┐│
-│  │bookController│ │customerCtrl │ │ staffCtrl   │ │orderCtrl││
-│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────┘│
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     Model Layer (20 Models)                  │
-│  ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐   │
-│  │book       │ │customer   │ │staff      │ │order      │   │
-│  │package    │ │package    │ │package    │ │package    │   │
-│  │           │ │           │ │           │ │           │   │
-│  │- Book     │ │- Customer │ │- Staff    │ │- Cart     │   │
-│  │- Rating   │ │- Address  │ │           │ │- CartItem │   │
-│  │- Category │ │- Wishlist │ │           │ │- Order    │   │
-│  │- Author   │ │- Wishlist │ │           │ │- OrderItem│   │
-│  │- Publisher│ │  Item     │ │           │ │- Payment  │   │
-│  │- Review   │ │           │ │           │ │- Shipping │   │
-│  │           │ │           │ │           │ │- Coupon   │   │
-│  └───────────┘ └───────────┘ └───────────┘ └───────────┘   │
-│                                                              │
-│  ┌───────────┐                                              │
-│  │inventory  │                                              │
-│  │package    │                                              │
-│  │           │                                              │
-│  │- Supplier │                                              │
-│  │- Inventory│                                              │
-│  └───────────┘                                              │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                       Database                               │
-│                        MySQL                                 │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                          View Layer                                   │
+│                        HTML Templates                                 │
+│        (book/, cart/, customer/, staff/, order/, marketing/)         │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                       Controller Layer                                │
+│  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐        │
+│  │bookCtrl    │ │customerCtrl│ │staffCtrl   │ │orderCtrl   │        │
+│  └────────────┘ └────────────┘ └────────────┘ └────────────┘        │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                     Model Layer (50 Models)                          │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐   │
+│  │book (12)    │ │customer (9) │ │staff (6)    │ │order (14)   │   │
+│  │             │ │             │ │             │ │             │   │
+│  │- Book       │ │- Customer   │ │- Staff      │ │- Cart       │   │
+│  │- Rating     │ │- Address    │ │- StaffRole  │ │- CartItem   │   │
+│  │- Category   │ │- Wishlist   │ │- StaffPerm  │ │- Order      │   │
+│  │- Author     │ │- WishlistIt │ │- RolePerm   │ │- OrderItem  │   │
+│  │- Publisher  │ │- CustGroup  │ │- StaffSched │ │- Payment    │   │
+│  │- Review     │ │- LoyaltyPt  │ │- AuditLog   │ │- Shipping   │   │
+│  │- BookImage  │ │- LoyaltyTx  │ │             │ │- Coupon     │   │
+│  │- BookFormat │ │- GiftCard   │ │             │ │- ShipMethod │   │
+│  │- BookLang   │ │- Notificatn │ │             │ │- ShipZone   │   │
+│  │- BookSeries │ │             │ │             │ │- PayMethod  │   │
+│  │- BookTag    │ │             │ │             │ │- Tax/Rate   │   │
+│  │- BookDiscnt │ │             │ │             │ │- ReturnOrd  │   │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘   │
+│                                                                      │
+│  ┌─────────────┐ ┌─────────────┐                                    │
+│  │inventory(7) │ │marketing(5) │                                    │
+│  │             │ │             │                                    │
+│  │- Supplier   │ │- Promotion  │                                    │
+│  │- Inventory  │ │- PromoRule  │                                    │
+│  │- Warehouse  │ │- Banner     │                                    │
+│  │- StockMove  │ │- Newsletter │                                    │
+│  │- PurchaseOrd│ │- NewsSubsc  │                                    │
+│  │- POItem     │ │             │                                    │
+│  │- InvAlert   │ │             │                                    │
+│  └─────────────┘ └─────────────┘                                    │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                           Database                                    │
+│                            MySQL                                      │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ### 5.2. Biểu đồ luồng dữ liệu
@@ -277,6 +362,12 @@ bookstore/
 | isbn | CharField(13) | Mã ISBN |
 | publisher | ForeignKey(Publisher) | Nhà xuất bản |
 | publication_year | IntegerField | Năm xuất bản |
+| language | ForeignKey(BookLanguage) | Ngôn ngữ sách |
+| series | ForeignKey(BookSeries) | Bộ sách/Series |
+| series_order | IntegerField | Thứ tự trong bộ |
+| tags | ManyToManyField(BookTag) | Tags phân loại |
+| weight | DecimalField | Cân nặng (kg) |
+| page_count | IntegerField | Số trang |
 | created_at | DateTimeField | Ngày tạo |
 | updated_at | DateTimeField | Ngày cập nhật |
 
@@ -357,6 +448,10 @@ bookstore/
 | password | CharField(128) | Mật khẩu (hashed) |
 | phone | CharField(20) | Số điện thoại |
 | address | TextField | Địa chỉ |
+| group | ForeignKey(CustomerGroup) | Nhóm khách hàng |
+| date_of_birth | DateField | Ngày sinh |
+| avatar | CharField(500) | Avatar URL |
+| is_verified | BooleanField | Đã xác thực |
 | created_at | DateTimeField | Ngày đăng ký |
 | updated_at | DateTimeField | Ngày cập nhật |
 
@@ -405,8 +500,11 @@ bookstore/
 | name | CharField(100) | Họ tên |
 | email | EmailField | Email (unique) |
 | password | CharField(128) | Mật khẩu (hashed) |
-| role | CharField(20) | Vai trò (admin/staff) |
+| staff_role | ForeignKey(StaffRole) | Vai trò nhân viên |
 | phone | CharField(20) | Số điện thoại |
+| hire_date | DateField | Ngày vào làm |
+| department | CharField(100) | Phòng ban |
+| avatar | CharField(500) | Avatar URL |
 | is_active | BooleanField | Đang hoạt động |
 | created_at | DateTimeField | Ngày tạo |
 | updated_at | DateTimeField | Ngày cập nhật |

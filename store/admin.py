@@ -38,10 +38,10 @@ class CustomerAdmin(admin.ModelAdmin):
 # Staff Domain
 @admin.register(Staff)
 class StaffAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'role', 'is_active', 'created_at']
-    list_filter = ['role', 'is_active']
+    list_display = ['name', 'email', 'staff_role', 'is_active', 'created_at']
+    list_filter = ['staff_role', 'is_active']
     search_fields = ['name', 'email']
-    list_editable = ['role', 'is_active']
+    list_editable = ['is_active']
 
 
 # Order Domain

@@ -38,7 +38,7 @@ def staff_login(request):
                 # Login successful
                 request.session['staff_id'] = staff.id
                 request.session['staff_name'] = staff.name
-                request.session['staff_role'] = staff.role
+                request.session['staff_role'] = staff.staff_role.code if staff.staff_role else 'staff'
                 
                 messages.success(request, f'Chào mừng {staff.name}!')
                 return redirect('staff_dashboard')
